@@ -1,0 +1,12 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "WeatherDemo",
+            "request": "launch",
+            "mainClass": "WeatherDemo",
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}
