@@ -3,6 +3,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "PokeApiClient",
+            "request": "launch",
+            "mainClass": "PokeApiClient",
+            "projectName": "SLTPokeAPI_2d072823"
+        },
+        {
+            "type": "java",
             "name": "WeatherDemo",
             "request": "launch",
             "mainClass": "WeatherDemo",
