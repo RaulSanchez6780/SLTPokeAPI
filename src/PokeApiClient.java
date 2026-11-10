@@ -13,7 +13,7 @@ public class PokeApiClient {
     public static void main(String[] args) throws IOException, InterruptedException {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Search a Pokemon: ");
-        String pokemon = scanner.nextLine().trim();
+        String pokemon = scanner.nextLine().trim().toLowerCase();
 
         String pokemonUrl = "https://pokeapi.co/api/v2/pokemon/" + pokemon;
 
@@ -23,7 +23,7 @@ public class PokeApiClient {
 
         if (response.statusCode() == 200) {
             JSONObject fullResponse = new JSONObject(response.body());
-
+        
             String name = fullResponse.getString("name");
             System.out.println("Pokemon: " + name);
             int id = fullResponse.getInt("id");
@@ -38,8 +38,25 @@ public class PokeApiClient {
                 String pokemonType = type.getString("name");
                 System.out.println("Type: " + pokemonType);
             }
+
+            System.out.println();
+            JSONArray stats = fullResponse.getJSONArray("stats");
+
+            for (int i = 0; i < stats.length(); i++) {
+                JSONObject statInfo = stats.getJSONObject(i);
+                JSONObject pokemonStat = statInfo.getJSONObject("stat");
+
+                String pokemonStats = pokemonStat.getString("name");
+                int baseStat = statInfo.getInt("base_stat");
+
+                System.out.println(pokemonStats + ": " + baseStat);
+            }
+
         } else {
-            System.out.println("Data not recieved. Status code: " + response.statusCode());
+            System.out.println("That one must not be registered in the Pokedex yet. Please try another pokemon.");
         }
+
+        scanner.close();
+
     }  
 }
