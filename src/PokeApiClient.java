@@ -7,9 +7,15 @@ import java.net.http.HttpResponse;
 import org.json.JSONObject;
 import org.json.JSONArray;
 
+import java.util.Scanner;
+
 public class PokeApiClient {
     public static void main(String[] args) throws IOException, InterruptedException {
-        String pokemonUrl = "https://pokeapi.co/api/v2/pokemon/tepig";
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Search a Pokemon: ");
+        String pokemon = scanner.nextLine().trim();
+
+        String pokemonUrl = "https://pokeapi.co/api/v2/pokemon/" + pokemon;
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder(URI.create(pokemonUrl)).build();
